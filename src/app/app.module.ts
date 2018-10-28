@@ -17,6 +17,20 @@ import { HistoryPage } from '../pages/history/history';
 import { MainPage } from '../pages/main/main';
 import { EventsPage } from '../pages/events/events';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthService } from './providers/auth.firebase';
+
+const firebase = {
+  apiKey: "AIzaSyBhZ3afTM-znIoeTMexTm-Ib1CNn5Relj4",
+  authDomain: "ibeacontap.firebaseapp.com",
+  databaseURL: "https://ibeacontap.firebaseio.com",
+  projectId: "ibeacontap",
+  storageBucket: "ibeacontap.appspot.com",
+  messagingSenderId: "1031840618466"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -31,7 +45,10 @@ import { EventsPage } from '../pages/events/events';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebase, 'angular-auth-firebase'),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,6 +68,7 @@ import { EventsPage } from '../pages/events/events';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthService,
   ]
 })
 export class AppModule {}

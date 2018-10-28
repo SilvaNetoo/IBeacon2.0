@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { MenuPage } from '../menu/menu';
+import { AuthService } from '../../app/providers/auth.firebase';
 
 /**
  * Generated class for the RegistrationPage page.
@@ -16,7 +17,7 @@ import { MenuPage } from '../menu/menu';
 })
 export class RegistrationPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private firebase: AuthService) {
   }
 
   ionViewDidLoad() {
@@ -47,6 +48,10 @@ export class RegistrationPage {
       ]
     });
     alert.present();
+  }
+
+  loginWithGoogleAccount() {
+    this.firebase.signInWithGoogle();
   }
 
 }
