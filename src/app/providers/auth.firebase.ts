@@ -16,13 +16,20 @@ import '@firebase/auth'
  */
 export class AuthService {
   constructor(private _firebaseAuth: AngularFireAuth) { }
-  signInWithGoogle() {
-    return this._firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider()
-    ).then(res => {
-    //   this.setToken(res.credential.accessToken);
+  signInWithGoogle(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._firebaseAuth.auth.signInWithPopup(
+        new firebase.auth.GoogleAuthProvider()
+      ).then(res => {
+      //   this.setToken(res.credential.accessToken);
+        resolve({
+          message: 'Sucesso!'
+        });
         console.log('Sucesso!')
         // this.navCtrl.setRoot(MenuPage);
+      }).catch((erro) => {
+        reject(erro);
+      });
     });
   }
 //   getToken() {

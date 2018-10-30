@@ -51,7 +51,11 @@ export class RegistrationPage {
   }
 
   loginWithGoogleAccount() {
-    this.firebase.signInWithGoogle();
+    this.firebase.signInWithGoogle().then((dados) => {
+      this.navCtrl.setRoot(MenuPage);
+    }).catch((erro) => {
+      console.log("Erro !", erro);
+    });
   }
 
 }
