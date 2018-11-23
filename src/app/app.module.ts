@@ -1,3 +1,4 @@
+import { FirebaseService } from './providers/firease.service';
 import { BeaconProvider } from './providers/beacon-provider';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,9 +19,9 @@ import { MainPage } from '../pages/main/main';
 import { EventsPage } from '../pages/events/events';
 
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from './providers/auth.firebase';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 const firebase = {
   apiKey: "AIzaSyBhZ3afTM-znIoeTMexTm-Ib1CNn5Relj4",
@@ -47,8 +48,8 @@ const firebase = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebase, 'angular-auth-firebase'),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -69,6 +70,7 @@ const firebase = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
+    FirebaseService
   ]
 })
 export class AppModule {}

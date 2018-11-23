@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { firebase } from '@firebase/app'
 import '@firebase/auth'
 // import { NavController } from 'ionic-angular';
 // import { MenuPage } from '../../pages/menu/menu';
@@ -16,22 +15,22 @@ import '@firebase/auth'
  */
 export class AuthService {
   constructor(private _firebaseAuth: AngularFireAuth) { }
-  signInWithGoogle(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this._firebaseAuth.auth.signInWithPopup(
-        new firebase.auth.GoogleAuthProvider()
-      ).then(res => {
-      //   this.setToken(res.credential.accessToken);
-        resolve({
-          message: 'Sucesso!'
-        });
-        console.log('Sucesso!')
-        // this.navCtrl.setRoot(MenuPage);
-      }).catch((erro) => {
-        reject(erro);
-      });
-    });
-  }
+  // signInWithGoogle(): Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     this._firebaseAuth.auth.signInWithPopup(
+  //       new firebase.auth.GoogleAuthProvider()
+  //     ).then(res => {
+  //     //   this.setToken(res.credential.accessToken);
+  //       resolve({
+  //         message: 'Sucesso!'
+  //       });
+  //       console.log('Sucesso!')
+  //       // this.navCtrl.setRoot(MenuPage);
+  //     }).catch((erro) => {
+  //       reject(erro);
+  //     });
+  //   });
+  // }
 //   getToken() {
 //     return localStorage.getItem(PREFIX_TOKEN);
 //   }

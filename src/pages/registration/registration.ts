@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { MenuPage } from '../menu/menu';
+import { AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthService } from '../../app/providers/auth.firebase';
+import { FirebaseService } from '../../app/providers/firease.service';
+import { MenuPage } from '../menu/menu';
 
 /**
  * Generated class for the RegistrationPage page.
@@ -17,8 +19,18 @@ import { AuthService } from '../../app/providers/auth.firebase';
 })
 export class RegistrationPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private firebase: AuthService) {
+  angularVoteCount: number;
+  reactVoteCount: number;
+  vueVoteCount: number;
+  hasVoted: boolean = false;
+  updating: boolean = false;
+  fsRef: AngularFirestoreDocument<any>;
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private firebase: AuthService, private afs: FirebaseService) {
   }
+
+  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegistrationPage');
@@ -50,12 +62,12 @@ export class RegistrationPage {
     alert.present();
   }
 
-  loginWithGoogleAccount() {
-    this.firebase.signInWithGoogle().then((dados) => {
-      this.navCtrl.setRoot(MenuPage);
-    }).catch((erro) => {
-      console.log("Erro !", erro);
+  async loginWithGoogleAccount() {
+    await this.afs.get().subscribe(response => {
+      console.log(response.payload.data()); 
     });
   }
+
+  ngOnInit() { }
 
 }

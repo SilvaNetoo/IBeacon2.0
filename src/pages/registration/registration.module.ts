@@ -1,3 +1,4 @@
+import { FirebaseService } from './../../app/providers/firease.service';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { RegistrationPage } from './registration';
@@ -8,6 +9,6 @@ import { RegistrationPage } from './registration';
   ],
   imports: [
     IonicPageModule.forChild(RegistrationPage),
-  ],
+  ]
 })
 export class RegistrationPageModule {}
